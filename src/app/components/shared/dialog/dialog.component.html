@@ -1,0 +1,29 @@
+<h1 mat-dialog-title> {{data.status}} !!</h1>
+
+<div mat-dialog-content>
+<!-- 
+    <span *ngIf="data.status === 'error'">
+        Error
+      </span>  -->
+  <!-- My favorite animal is: -->
+  <ul>
+    <li *ngIf="data.status === 'success'">
+      <span>
+        {{data.message}}
+      </span> 
+     
+    </li>
+    <li *ngIf="data.status === 'error'">
+      <span>
+        {{data.message}}
+      </span> 
+    
+    </li>
+    <li *ngIf="data.status === 'warning'">
+      <span>
+        {{data.message}}
+      </span> 
+     
+    </li>
+  </ul>
+</div>

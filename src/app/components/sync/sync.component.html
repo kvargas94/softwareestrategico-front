@@ -1,0 +1,13 @@
+
+<div fxLayout="row" fxLayoutAlign="center center" [style.height.px]="scrHeight">
+    <mat-card class="card-home" style="background-color: whitesmoke;">
+        <mat-card-header>
+            <div mat-card-avatar class="card-home-avatar"></div>
+            <button mat-stroked-button color="primary" (click)='sincronizar()'>Sincronizar</button>       
+        </mat-card-header>      
+         
+    </mat-card>
+    <mat-spinner *ngIf="cargando"></mat-spinner> 
+</div>
+
+

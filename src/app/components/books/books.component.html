@@ -1,0 +1,91 @@
+<div fxLayout="container" fxLayoutAlign="center center">
+  
+    <mat-card class="card-common" style="background-color: whitesmoke;">
+        <mat-card-header>
+            <div mat-card-avatar class="card-home-avatar"></div>
+            <mat-card-title>Books</mat-card-title>           
+        </mat-card-header>    
+        <mat-card-content>
+            <form [formGroup]="formBooks" (ngSubmit)="getBooks()">
+                <p>
+                    <mat-form-field>
+                        <mat-select formControlName="autor">
+                            <mat-option [value]="0">Selecciona un autor</mat-option>
+                            <mat-option *ngFor="let autor of autores" [value]="autor.idBook">
+                              {{autor.firstName}} {{autor.lastName}}
+                            </mat-option>
+                          </mat-select>                    
+                    </mat-form-field>     
+                </p>
+                <p>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Elige una fecha inicio</mat-label>
+                        <input matInput [matDatepicker]="picker" formControlName="fecha_inicio">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                      </mat-form-field>   
+
+                      <mat-form-field appearance="fill">
+                        <mat-label>Elige una fecha fin</mat-label>
+                        <input matInput [matDatepicker]="picker2" formControlName="fecha_fin">
+                        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                        <mat-datepicker #picker2></mat-datepicker>
+                      </mat-form-field>   
+                </p>
+                <div class="button">
+                    <button mat-raised-button [disabled]="!formBooks.valid" color="primary" type="submit">Iniciar
+                        Buscar</button>
+                </div>
+            </form>
+        </mat-card-content>
+        <!-- <div class="row">            
+            <div class="col l4 m12 s12">
+                <mat-form-field>
+                    <mat-select [value]="0">
+                        <mat-option [value]="0">Selecciona un autor</mat-option>
+                        <mat-option *ngFor="let autor of autores" [value]="autor.id">
+                          {{autor.firstName}} {{autor.lastName}}
+                        </mat-option>
+                      </mat-select>                    
+                </mat-form-field>                                 
+            </div>       
+            <div class="col l4 m12 s12">
+                <mat-form-field appearance="fill">
+                    <mat-label>Elige una fecha</mat-label>
+                    <input matInput [matDatepicker]="picker">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                  </mat-form-field>                              
+            </div> 
+            <div class="col l4 m12 s12">
+                <button mat-stroked-button color="primary">Consultar</button>                  
+            </div>              
+        </div> -->
+    </mat-card>        
+</div>
+
+<table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z8">
+
+      <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef> Titulo </th>
+        <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+      </ng-container>
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef> Descripcion </th>
+        <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+      </ng-container>
+      <ng-container matColumnDef="pageCount">
+        <th mat-header-cell *matHeaderCellDef> Paginas </th>
+        <td mat-cell *matCellDef="let element"> {{element.pageCount}} </td>
+      </ng-container>
+      <ng-container matColumnDef="excerpt">
+        <th mat-header-cell *matHeaderCellDef class="w-100"> Extracto </th>
+        <td mat-cell *matCellDef="let element"> {{element.excerpt}} </td>
+      </ng-container>
+      <ng-container matColumnDef="publishDate">
+        <th mat-header-cell *matHeaderCellDef> Fecha publicación </th>
+        <td mat-cell *matCellDef="let element"> {{element.publishDate | date:"MM/dd/yy"}} </td>
+      </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>    
+  </table>

@@ -1,0 +1,38 @@
+
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #sidenav mode="over">
+      <p><button mat-button (click)="sidenav.toggle()">
+        <span class="material-icons">
+          list
+        </span>
+      </button></p>
+      <p>
+      </p>
+    <mat-nav-list>
+        <a *ngFor="let route of routes"
+           mat-list-item  
+           [routerLink]="[route.path]" 
+           (click)="sidenav.toggle()"> {{route.label}}</a>
+      </mat-nav-list>
+
+    </mat-sidenav>
+  
+    <mat-sidenav-content>
+    
+      <mat-toolbar color="primary">
+        <mat-toolbar-row>
+            <p><button mat-button (click)="sidenav.toggle()">
+                <span class="material-icons">
+                    list
+                </span>
+            </button></p>
+            <span class="toolbar-spacer"></span>
+            <button mat-button (click)="LogOut()">
+                <mat-icon aria-hidden="false" aria-label="Salir">logout</mat-icon>
+            </button>
+        </mat-toolbar-row>
+    </mat-toolbar>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+  
