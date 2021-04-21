@@ -28,16 +28,27 @@ export class SyncComponent implements OnInit {
   ngOnInit(): void {
   }
   sincronizar(){
+
     const url = environment.urlAPI + 'api/Provider/PostSync';
     this.cargando =true;
     this.subRef$ = this.dataService.post<any>(url,'').subscribe(res =>{
-      console.log(res);
+      console.log(res);      
       this.cargando = false;
-      let dialogo: DialogData ={
-        status :'success',
-        message : 'Sincronizado correctamente!'
-      };
-      this.mostrarDialogo(dialogo);
+      if(res.status ==200){
+        let dialogo: DialogData ={
+          status :'success',
+          message : "Sincronizado correctamente!"
+        };
+        this.mostrarDialogo(dialogo);
+      }
+      else{
+        let dialogo: DialogData ={
+          status :'warning',
+          message : "Ocurrio un error"
+        };
+        this.mostrarDialogo(dialogo);
+      }
+     
     },err=>{
       this.cargando = false;
       let dialogo: DialogData ={
